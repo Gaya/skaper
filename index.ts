@@ -3,7 +3,7 @@ import * as fs from "node:fs";
 import minimist from 'minimist';
 import { parse } from 'node-html-parser';
 import fetch from 'node-fetch';
-import {createCanvas, loadImage, registerFont} from 'canvas';
+import { createCanvas, loadImage, registerFont, CanvasRenderingContext2D } from 'canvas';
 import sharp from 'sharp';
 
 registerFont('./JetBrainsMono-Medium.ttf', { family: 'JetBrainsMono' })
@@ -18,10 +18,41 @@ const sites: Record<string, SiteConfig> = {
         // baseUrl: 'http://localhost:4000',
         baseUrl: 'https://sauce.gaya.pizza',
         selector: 'main article',
-    }
+    },
+    danny: {
+        // baseUrl: 'http://localhost:4000',
+        baseUrl: 'https://www.dannyvankooten.com',
+        selector: 'body article',
+    },
+    barry: {
+        // baseUrl: 'http://localhost:4000',
+        baseUrl: 'https://www.barrykooij.com',
+        selector: 'body article',
+    },
 }
 
 const args = minimist(process.argv.slice(2));
+
+function formatTitle(title: string, maxWidth: number, ctx: CanvasRenderingContext2D): string {
+    const words = title.split(' ');
+
+    return words.reduce((acc, word) => {
+        if (acc === '') {
+            return word;
+        }
+
+        if (ctx.measureText(acc + ' ' + word).width > maxWidth) {
+            const [beforeDash, ...splitOnDash] = word.split('-');
+            if (splitOnDash.length > 0 && ctx.measureText(acc + ' ' + beforeDash + '-').width <= maxWidth) {
+                return acc + ' ' + beforeDash + '-\n' + splitOnDash.join('-');
+            }
+
+            return acc + '\n' + word;
+        }
+
+        return acc + ' ' + word;
+    }, '');
+}
 
 function generateImage(config: SiteConfig, path: string) {
     const url = [config.baseUrl, path].join('/');
@@ -51,24 +82,59 @@ function generateImage(config: SiteConfig, path: string) {
             ctx.fillRect(0, 0, width, height);
 
             if (firstImage) {
-                const imgBuffer = await (await fetch([config.baseUrl, firstImage.attrs.src].join(''))).arrayBuffer();
+                console.info('Fetching first image');
+                const imgUrl = firstImage.attrs.src.startsWith('http')
+                    ? firstImage.attrs.src
+                    : [config.baseUrl, firstImage.attrs.src].join('');
+                const imgBuffer = await (await fetch(imgUrl)).arrayBuffer();
+
+                console.info('Resizing image');
                 const resized = await sharp(imgBuffer)
                     .resize(width, height)
                     .png()
                     .toBuffer();
 
+                console.info('Drawing image');
                 const img = await loadImage(resized);
                 ctx.drawImage(img, 0, 0);
             }
 
             ctx.font = "72px JetBrainsMono";
             ctx.textAlign = "left";
-            ctx.fillStyle = "#fff";
+            ctx.textBaseline = "top";
 
-            ctx.fillText(title || 'No title', 46, 430);
+            const titlePadding = 46;
+            const maxTitleWidth = width - (titlePadding * 2);
+
+            const formattedTitle = formatTitle(title || 'No title', maxTitleWidth, ctx);
+            const lines = formattedTitle.split('\n');
+            const lineHeight = ctx.measureText('lines').emHeightDescent;
+
+            const top = height - (lineHeight * lines.length) - titlePadding;
+
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                const backgroundPadding = titlePadding / 4;
+
+                ctx.fillStyle = "#fff";
+                ctx.fillRect(
+                    titlePadding - backgroundPadding,
+                    top + (lineHeight * i),
+                    ctx.measureText(line).width + (backgroundPadding * 2),
+                    lineHeight,
+                );
+            }
+
+            ctx.fillStyle = "#000";
+            ctx.fillText(formattedTitle, titlePadding, top);
 
             const buffer = canvas.toBuffer("image/jpeg");
-            fs.writeFileSync("./.tmp/poster.jpg", buffer);
+            fs.writeFileSync(
+                "./.tmp/poster.jpg",
+                await sharp(buffer)
+                    .jpeg({ mozjpeg: true })
+                    .toBuffer(),
+            );
         });
 }
 

@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "main": "index.ts",
   "scripts": {
-    "test": "tsx index.ts --site=sauce --path=helping-build-a-self-driving-robot"
+    "test": "tsx index.ts --site=sauce --path=helping-build-a-self-driving-robot",
+    "danny": "tsx index.ts --site=danny --path=blog/2025/building-privacy-friendly-website-analytics",
+    "barry": "tsx index.ts --site=barry --path=live-reloading-for-wordpress-development"
   },
   "repository": {
     "type": "git",

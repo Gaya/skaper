@@ -43,14 +43,15 @@ function formatTitle(title: string, maxWidth: number, ctx: CanvasRenderingContex
 
         if (ctx.measureText(acc + ' ' + word).width > maxWidth) {
             const [beforeDash, ...splitOnDash] = word.split('-');
+
             if (splitOnDash.length > 0 && ctx.measureText(acc + ' ' + beforeDash + '-').width <= maxWidth) {
-                return acc + ' ' + beforeDash + '-\n' + splitOnDash.join('-');
+                return `${acc} ${beforeDash}-\n${splitOnDash.join('-')}`;
             }
 
-            return acc + '\n' + word;
+            return `${acc}\n${word}`;
         }
 
-        return acc + ' ' + word;
+        return `${acc} ${word}`;
     }, '');
 }
 

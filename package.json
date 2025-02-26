@@ -2,10 +2,12 @@
   "name": "skaper",
   "version": "0.0.1",
   "main": "index.js",
-  "bin": "index.js",
+  "bin": {
+    "skaper": "index.js"
+  },
   "scripts": {
     "build": "tsc",
-    "prepublish": "npm run build"
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",

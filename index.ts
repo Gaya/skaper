@@ -3,7 +3,7 @@ import * as fs from "node:fs";
 import minimist from 'minimist';
 import { parse } from 'node-html-parser';
 import fetch from 'node-fetch';
-import { createCanvas, loadImage, registerFont, CanvasRenderingContext2D } from 'canvas';
+import { createCanvas, loadImage, registerFont, CanvasRenderingContext2D, Image } from 'canvas';
 import sharp from 'sharp';
 
 registerFont('./JetBrainsMono-Medium.ttf', { family: 'JetBrainsMono' })
@@ -11,13 +11,18 @@ registerFont('./JetBrainsMono-Medium.ttf', { family: 'JetBrainsMono' })
 interface SiteConfig {
     baseUrl: string;
     selector?: string;
+    background?: string;
+    logo?: string;
 }
 
 const sites: Record<string, SiteConfig> = {
     sauce: {
-        // baseUrl: 'http://localhost:4000',
-        baseUrl: 'https://sauce.gaya.pizza',
+        baseUrl: 'http://localhost:4000',
+        // baseUrl: 'https://sauce.gaya.pizza',
         selector: 'main article',
+        // background: '#fff',
+        background: '#C03319',
+        logo: './sauce-logo.svg',
     },
     danny: {
         // baseUrl: 'http://localhost:4000',
@@ -60,7 +65,7 @@ function generateImage(config: SiteConfig, path: string) {
 
     console.info(`Fetching data from ${url}`);
 
-    fetch(url)
+    return fetch(url)
         .then((res) => res.text())
         .then(parse)
         .then(async (root) => {
@@ -79,7 +84,7 @@ function generateImage(config: SiteConfig, path: string) {
             const canvas = createCanvas(width, height);
             const ctx = canvas.getContext('2d');
 
-            ctx.fillStyle = "#000";
+            ctx.fillStyle = config.background || "#000";
             ctx.fillRect(0, 0, width, height);
 
             if (firstImage) {
@@ -98,6 +103,22 @@ function generateImage(config: SiteConfig, path: string) {
                 console.info('Drawing image');
                 const img = await loadImage(resized);
                 ctx.drawImage(img, 0, 0);
+            }
+
+            if (config.logo) {
+                const imgBuffer = fs.readFileSync(config.logo);
+
+                const resized = await sharp(imgBuffer)
+                    .resize(firstImage ? 200 : 300, undefined)
+                    .toBuffer();
+
+                const img = await loadImage(resized);
+
+                if (firstImage) {
+                    ctx.drawImage(img, 46, 46);
+                } else {
+                    ctx.drawImage(img, (width / 2) - (img.width / 2), 46);
+                }
             }
 
             ctx.font = "72px JetBrainsMono";
@@ -130,13 +151,18 @@ function generateImage(config: SiteConfig, path: string) {
             ctx.fillText(formattedTitle, titlePadding, top);
 
             const buffer = canvas.toBuffer("image/jpeg");
-            fs.writeFileSync(
-                "./.tmp/poster.jpg",
-                await sharp(buffer)
-                    .jpeg({ mozjpeg: true })
-                    .toBuffer(),
-            );
+            return sharp(buffer).jpeg({ mozjpeg: true }).toBuffer();
         });
 }
 
-generateImage(sites[args.site], args.path);
+if (args.site && args.path && args.out) {
+    (async () => {
+        const buffer = await generateImage(sites[args.site], args.path);
+        fs.writeFileSync(
+            args.out,
+            buffer,
+        );
+    })();
+}
+
+export default generateImage;

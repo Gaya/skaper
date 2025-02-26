@@ -1,4 +1,5 @@
-import * as fs from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 
 import minimist from 'minimist';
 import { parse, HTMLElement } from 'node-html-parser';
@@ -6,7 +7,7 @@ import fetch from 'node-fetch';
 import { createCanvas, loadImage, registerFont, CanvasRenderingContext2D } from 'canvas';
 import sharp from 'sharp';
 
-registerFont('./assets/JetBrainsMono-Medium.ttf', { family: 'JetBrainsMono' })
+registerFont(join(__dirname, 'assets/JetBrainsMono-Medium.ttf'), { family: 'JetBrainsMono' })
 
 interface SiteConfig {
     baseUrl: string;
@@ -97,7 +98,7 @@ export async function generateImage(root: HTMLElement, config: SiteConfig) {
     }
 
     if (config.logo) {
-        const imgBuffer = fs.readFileSync(config.logo);
+        const imgBuffer = readFileSync(config.logo);
 
         const resized = await sharp(imgBuffer)
             .resize(firstImage ? 200 : 300, undefined)
@@ -162,7 +163,7 @@ export function generateImageFromURL(config: SiteConfig, path: string) {
 if (args.site && args.path && args.out) {
     (async () => {
         const buffer = await generateImageFromURL(sites[args.site], args.path);
-        fs.writeFileSync(
+        writeFileSync(
             args.out,
             buffer,
         );

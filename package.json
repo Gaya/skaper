@@ -5,6 +5,9 @@
   "bin": {
     "skaper": "index.js"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build"

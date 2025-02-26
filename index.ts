@@ -6,7 +6,7 @@ import fetch from 'node-fetch';
 import { createCanvas, loadImage, registerFont, CanvasRenderingContext2D } from 'canvas';
 import sharp from 'sharp';
 
-registerFont('./JetBrainsMono-Medium.ttf', { family: 'JetBrainsMono' })
+registerFont('./assets/JetBrainsMono-Medium.ttf', { family: 'JetBrainsMono' })
 
 interface SiteConfig {
     baseUrl: string;
@@ -21,7 +21,7 @@ const sites: Record<string, SiteConfig> = {
         // baseUrl: 'https://sauce.gaya.pizza',
         selector: 'main article',
         background: '#C03319',
-        logo: './sauce-logo.svg',
+        logo: './assets/sauce-logo.svg',
     },
     danny: {
         // baseUrl: 'http://localhost:4000',

@@ -1,7 +1,7 @@
 {
-  "name": "social-preview-image",
+  "name": "skaper",
   "version": "0.0.0",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
     "test": "tsx index.ts --site=sauce --path=helping-build-a-self-driving-robot",
     "sauce": "tsx index.ts --site=sauce --path=bake-your-own-bread --out=../sauce/source/_posts/bake-your-own-bread/og-poster.jpg",
@@ -10,26 +10,26 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Gaya/social-preview-image.git"
+    "url": "git+https://github.com/Gaya/skaper.git"
   },
   "author": "Gaya Kessler",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/Gaya/social-preview-image/issues"
+    "url": "https://github.com/Gaya/skaper/issues"
   },
-  "homepage": "https://github.com/Gaya/social-preview-image#readme",
+  "homepage": "https://github.com/Gaya/skaper#readme",
   "description": "",
   "devDependencies": {
     "@types/minimist": "^1.2.5",
     "@types/node": "^22.13.5",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "tsx": "^4.19.3"
   },
   "dependencies": {
     "canvas": "^3.1.0",
     "minimist": "^1.2.8",
     "node-fetch": "^3.3.2",
     "node-html-parser": "^7.0.1",
-    "sharp": "^0.33.5",
-    "tsx": "^4.19.3"
+    "sharp": "^0.33.5"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "hexo-skaper",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "main": "index.js",
   "dependencies": {
     "hexo-fs": "^5.0.0"

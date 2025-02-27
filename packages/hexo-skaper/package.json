@@ -1,8 +1,9 @@
 {
   "name": "hexo-skaper",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "index.js",
   "dependencies": {
+    "skaper": "^0.0.4",
     "hexo-fs": "^5.0.0"
   }
 }

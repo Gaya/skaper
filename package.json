@@ -1,16 +1,10 @@
 {
-  "name": "skaper",
-  "version": "0.0.3",
-  "main": "index.js",
-  "bin": {
-    "skaper": "index.js"
-  },
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run build"
+    "preparepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -23,21 +17,7 @@
   },
   "homepage": "https://github.com/Gaya/skaper#readme",
   "description": "",
-  "devDependencies": {
-    "@types/minimist": "^1.2.5",
-    "@types/node": "^22.13.5",
-    "typescript": "^5.7.3",
-    "tsx": "^4.19.3"
-  },
   "dependencies": {
-    "canvas": "^3.1.0",
-    "minimist": "^1.2.8",
-    "node-fetch": "^3.3.2",
-    "node-html-parser": "^7.0.1",
-    "sharp": "^0.33.5"
-  },
-  "files": [
-    "index.js",
-    "./assets/*"
-  ]
+    "typescript": "^5.7.3"
+  }
 }

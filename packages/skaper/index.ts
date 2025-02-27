@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
 import minimist from 'minimist';
@@ -18,26 +18,6 @@ export interface SiteConfig {
     getTitle?: (body: HTMLElement, config: SiteConfig) => string | undefined;
     getFirstImage?: (body: HTMLElement, config: SiteConfig) => string | undefined;
     resolveImage?: (src: string, config: SiteConfig) => Promise<ArrayBuffer>;
-}
-
-const sites: Record<string, SiteConfig> = {
-    sauce: {
-        baseUrl: 'http://localhost:4000',
-        // baseUrl: 'https://sauce.gaya.pizza',
-        selector: 'main article',
-        background: '#C03319',
-        logo: './assets/sauce-logo.svg',
-    },
-    danny: {
-        // baseUrl: 'http://localhost:4000',
-        baseUrl: 'https://www.dannyvankooten.com',
-        selector: 'body article',
-    },
-    barry: {
-        // baseUrl: 'http://localhost:4000',
-        baseUrl: 'https://www.barrykooij.com',
-        selector: 'body article',
-    },
 }
 
 const args = minimist(process.argv.slice(2));
@@ -180,16 +160,6 @@ export function generateImageFromURL(config: SiteConfig, path: string) {
 
 export function parseHTML(html: string): HTMLElement {
     return parse(html);
-}
-
-if (args.site && args.path && args.out) {
-    (async () => {
-        const buffer = await generateImageFromURL(sites[args.site], args.path);
-        writeFileSync(
-            args.out,
-            buffer,
-        );
-    })();
 }
 
 export default generateImage;

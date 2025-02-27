@@ -7,13 +7,17 @@ import fetch from 'node-fetch';
 import { createCanvas, loadImage, registerFont, CanvasRenderingContext2D } from 'canvas';
 import sharp from 'sharp';
 
-registerFont(join(__dirname, 'assets/JetBrainsMono-Medium.ttf'), { family: 'JetBrainsMono' })
+registerFont(join(__dirname, 'assets/JetBrainsMono-Medium.ttf'), { family: 'JetBrainsMono' });
 
-interface SiteConfig {
+export interface SiteConfig {
     baseUrl: string;
     selector?: string;
     background?: string;
     logo?: string;
+    imagePath?: string;
+    getTitle?: (body: HTMLElement, config: SiteConfig) => string | undefined;
+    getFirstImage?: (body: HTMLElement, config: SiteConfig) => string | undefined;
+    resolveImage?: (src: string, config: SiteConfig) => Promise<ArrayBuffer>;
 }
 
 const sites: Record<string, SiteConfig> = {
@@ -60,15 +64,33 @@ function formatTitle(title: string, maxWidth: number, ctx: CanvasRenderingContex
     }, '');
 }
 
-export async function generateImage(root: HTMLElement, config: SiteConfig) {
+const defaultConfig: Required<Pick<SiteConfig, "resolveImage" | "getTitle" | "getFirstImage">> = {
+    getTitle: (body) => body.querySelector('h1')?.textContent,
+    getFirstImage: (body) => body.querySelector('img')?.attrs.src,
+    resolveImage: (src: string, config: SiteConfig): Promise<ArrayBuffer> => {
+        const imgUrl = !src.startsWith('http')
+            ? [config.baseUrl, src].join('')
+            : src;
+
+        console.info('Fetching first image', imgUrl);
+        return fetch(imgUrl).then((i) => i.arrayBuffer());
+    }
+};
+
+export async function generateImage(
+    root: HTMLElement,
+    conf: SiteConfig,
+) {
+    const config = { ...defaultConfig, ...conf };
+
     const body = root.querySelector(config.selector || 'body');
 
     if (!body) {
         throw new Error(`Could not find body on '${config.selector}'`);
     }
 
-    const title = body.querySelector('h1')?.textContent;
-    const firstImage = body.querySelector('img');
+    const title = config.getTitle(body, config);
+    const firstImage = config.getFirstImage(body, config);
 
     const width = 1200;
     const height = 630;
@@ -80,11 +102,7 @@ export async function generateImage(root: HTMLElement, config: SiteConfig) {
     ctx.fillRect(0, 0, width, height);
 
     if (firstImage) {
-        console.info('Fetching first image');
-        const imgUrl = firstImage.attrs.src.startsWith('http')
-            ? firstImage.attrs.src
-            : [config.baseUrl, firstImage.attrs.src].join('');
-        const imgBuffer = await (await fetch(imgUrl)).arrayBuffer();
+        const imgBuffer = await config.resolveImage(firstImage, config);
 
         console.info('Resizing image');
         const resized = await sharp(imgBuffer)
@@ -158,6 +176,10 @@ export function generateImageFromURL(config: SiteConfig, path: string) {
     return fetchHTMLFromURL(url)
         .then(parse)
         .then((root) => generateImage(root, config));
+}
+
+export function parseHTML(html: string): HTMLElement {
+    return parse(html);
 }
 
 if (args.site && args.path && args.out) {

@@ -4,7 +4,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "preparepublish": "npm run build"
+    "publish-all": "npm run build && npm publish --workspaces"
   },
   "repository": {
     "type": "git",

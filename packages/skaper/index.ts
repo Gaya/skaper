@@ -3,9 +3,12 @@ import { join } from "node:path";
 
 import minimist from 'minimist';
 import { parse, HTMLElement } from 'node-html-parser';
-import fetch from 'node-fetch';
 import { createCanvas, loadImage, registerFont, CanvasRenderingContext2D } from 'canvas';
 import sharp from 'sharp';
+import { RequestInfo, RequestInit } from 'node-fetch';
+
+const fetch = (url: RequestInfo, init?: RequestInit) =>  import('node-fetch')
+    .then(({ default: fetch }) => fetch(url, init));
 
 registerFont(join(__dirname, 'assets/JetBrainsMono-Medium.ttf'), { family: 'JetBrainsMono' });
 

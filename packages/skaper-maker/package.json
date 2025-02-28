@@ -1,0 +1,42 @@
+{
+  "name": "skaper-maker",
+  "version": "0.0.6",
+  "main": "index.js",
+  "bin": {
+    "skaper": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gaya/skaper.git"
+  },
+  "author": "Gaya Kessler",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Gaya/skaper/issues"
+  },
+  "homepage": "https://github.com/Gaya/skaper#readme",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "preact": "^10.25.3"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.9.3",
+    "eslint": "^8.57.1",
+    "eslint-config-preact": "^1.5.0",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.4"
+  },
+  "eslintConfig": {
+    "extends": "preact"
+  },
+  "files": [
+    "index.js",
+    "./assets/*"
+  ]
+}

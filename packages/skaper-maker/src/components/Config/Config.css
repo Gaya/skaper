@@ -4,16 +4,16 @@
     min-width: 300px;
 
     fieldset {
-        padding: 12px;
         border: 0;
         border-bottom: 1px solid var(--skaper-divider);
-        margin: 0;
+        margin: 12px 0;
+        padding: 0;
     }
 
     label {
         display: block;
         font-weight: 500;
-        margin-bottom: 4px;
+        padding: 0 12px;
     }
 
     select {
@@ -23,5 +23,9 @@
         color: var(--skaper-text);
         padding: 8px;
         width: 100%;
+    }
+
+    .skaper-input-container {
+        padding: 8px 12px 12px 12px;
     }
 }

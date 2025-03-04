@@ -5,7 +5,7 @@
     width: 100%;
 
     > header {
-        background: var(--skaper-primary-dark);
+        background: var(--skaper-primary);
         color: var(--skaper-light);
         padding: 8px 12px;
         text-transform: uppercase;
@@ -13,5 +13,12 @@
 
     .skaper-container {
         display: flex;
+    }
+
+    .skaper-image-container {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }

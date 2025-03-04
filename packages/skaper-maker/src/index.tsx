@@ -1,6 +1,6 @@
 import { render } from 'preact';
 
-import Skaper from "./components/Skaper/Skaper";
+import Skaper from "@/components/Skaper/Skaper";
 
 import './style.css';
 

@@ -23,7 +23,10 @@
   },
   "homepage": "https://github.com/Gaya/skaper#readme",
   "dependencies": {
-    "preact": "^10.25.3"
+    "@preact/signals": "^2.0.1",
+    "classnames": "^2.5.1",
+    "preact": "^10.25.3",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.9.3",

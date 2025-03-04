@@ -1,0 +1,27 @@
+#skaper-maker .Config {
+    border-right: 1px solid var(--skaper-divider);
+    width: 30%;
+    min-width: 300px;
+
+    fieldset {
+        padding: 12px;
+        border: 0;
+        border-bottom: 1px solid var(--skaper-divider);
+        margin: 0;
+    }
+
+    label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 4px;
+    }
+
+    select {
+        background: var(--skaper-light);
+        border: 1px solid var(--skaper-text);
+        border-radius: 4px;
+        color: var(--skaper-text);
+        padding: 8px;
+        width: 100%;
+    }
+}

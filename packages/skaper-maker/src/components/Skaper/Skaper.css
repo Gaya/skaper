@@ -1,0 +1,17 @@
+#skaper-maker {
+    overflow: hidden;
+    border-radius: 4px;
+    max-width: 1200px;
+    width: 100%;
+
+    > header {
+        background: var(--skaper-primary-dark);
+        color: var(--skaper-light);
+        padding: 8px 12px;
+        text-transform: uppercase;
+    }
+
+    .skaper-container {
+        display: flex;
+    }
+}

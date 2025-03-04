@@ -1,12 +1,12 @@
 import { render } from 'preact';
 
+import Skaper from "./components/Skaper/Skaper";
+
 import './style.css';
 
 export function App() {
 	return (
-		<div>
-			<h1>Skaper Template Maker</h1>
-		</div>
+		<Skaper />
 	);
 }
 

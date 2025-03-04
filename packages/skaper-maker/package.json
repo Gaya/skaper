@@ -2,6 +2,13 @@
   "name": "skaper-maker",
   "version": "0.0.6",
   "main": "index.js",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
   "bin": {
     "skaper": "index.js"
   },
@@ -15,13 +22,6 @@
     "url": "https://github.com/Gaya/skaper/issues"
   },
   "homepage": "https://github.com/Gaya/skaper#readme",
-  "description": "",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
   "dependencies": {
     "preact": "^10.25.3"
   },

@@ -4,13 +4,19 @@ import { PropsWithChildren } from 'preact/compat';
 import { Signal, signal } from '@preact/signals';
 
 type ImageSize = 'og' | 'twitter';
+type HAlign = 'left' | 'center' | 'right';
+type VAlign = 'top' | 'middle' | 'bottom';
 
 interface AppStateProps {
-    imageSize: Signal<ImageSize>;
+  imageSize: Signal<ImageSize>;
+  titleHAlign: Signal<HAlign>;
+  titleVAlign: Signal<VAlign>;
 }
 
 const createDefaultAppState: () => AppStateProps = () => ({
   imageSize: signal<ImageSize>('og'),
+  titleHAlign: signal<HAlign>('left'),
+  titleVAlign: signal<VAlign>('top'),
 });
 
 const AppState = createContext<AppStateProps>(createDefaultAppState());

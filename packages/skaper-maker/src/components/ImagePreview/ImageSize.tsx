@@ -11,7 +11,7 @@ function ImageSize() {
   return (
     <fieldset className="ImageSize">
       <label htmlFor={id}>
-        Image Size:
+        <span>Preview Size:</span>
         <div className="skaper-input-container">
           <select
             name="skaper-size"

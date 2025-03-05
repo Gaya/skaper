@@ -11,8 +11,8 @@ function ImagePreview() {
 
   return (
     <section className="ImagePreview">
-      <ImageSize />
       <div className={classNames('Image', { Twitter: imageSize.value === 'twitter' })} />
+      <ImageSize />
     </section>
   );
 }

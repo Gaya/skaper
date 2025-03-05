@@ -1,12 +1,18 @@
 .ImageSize {
     padding: 0;
     border: none;
-    display: flex;
-    align-items: center;
-    margin: 0 0 12px 0;
+    margin: 12px 0 0 0;
 
     label {
-        margin-right: 8px;
+        align-items: center;
+        display: flex;
+        font-size: 0.8em;
+        justify-content: flex-end;
+
+        span {
+            font-weight: 500;
+            margin-right: 8px;
+        }
     }
 
     select {
@@ -16,5 +22,6 @@
         color: var(--skaper-text);
         padding: 4px;
         width: 100%;
+        display: block;
     }
 }

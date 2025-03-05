@@ -1,6 +1,10 @@
 .ButtonGroup {
     display: flex;
 
+    .Button {
+        width: 100%;
+    }
+
     .Button:first-child {
         border-right: 0;
         border-top-right-radius: 0;

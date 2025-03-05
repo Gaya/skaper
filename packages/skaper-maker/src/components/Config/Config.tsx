@@ -6,7 +6,6 @@ function Config() {
   return (
     <aside className="Config">
       <fieldset>
-        <legend>Title</legend>
         <TitlePosition />
       </fieldset>
     </aside>

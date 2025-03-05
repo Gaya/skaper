@@ -37,9 +37,9 @@
 
     &:hover, &:active, &:focus {
         outline: none;
-        border-color: var(--skaper-accent);
+        border-color: var(--skaper-primary-dark);
         color: var(--skaper-light);
-        background: var(--skaper-accent);
+        background: var(--skaper-primary-dark);
     }
 
     &:active, &:focus {

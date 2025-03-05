@@ -1,11 +1,11 @@
 import './Config.css';
 
 function Config() {
-    return (
-        <aside class="Config">
-            Config
-        </aside>
-    );
+  return (
+    <aside className="Config">
+      Config
+    </aside>
+  );
 }
 
 export default Config;

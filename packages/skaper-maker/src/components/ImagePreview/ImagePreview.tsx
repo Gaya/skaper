@@ -1,21 +1,20 @@
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import { useAppState } from "@/components/Skaper/AppState";
+import { useAppState } from '@/components/Skaper/AppState';
 
-import ImageSize from "./ImageSize";
+import ImageSize from './ImageSize';
 
 import './ImagePreview.css';
 
 function ImagePreview() {
-    const { imageSize } = useAppState();
+  const { imageSize } = useAppState();
 
-    return (
-        <section class="ImagePreview">
-            <ImageSize />
-            <div class={classNames('Image', { 'Twitter': imageSize.value === 'twitter' })}>
-            </div>
-        </section>
-    )
+  return (
+    <section className="ImagePreview">
+      <ImageSize />
+      <div className={classNames('Image', { Twitter: imageSize.value === 'twitter' })} />
+    </section>
+  );
 }
 
 export default ImagePreview;

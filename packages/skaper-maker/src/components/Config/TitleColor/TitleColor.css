@@ -1,0 +1,10 @@
+#skaper-maker .TitleColor {
+    padding: 0 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+        margin-bottom: 0;
+    }
+}

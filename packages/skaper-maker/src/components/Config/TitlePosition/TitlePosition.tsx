@@ -12,34 +12,34 @@ import AlignBottomIcon from './AlignBottom.icon';
 import './TitlePosition.css';
 
 function TitlePosition() {
-  const { titleHAlign, titleVAlign } = useAppState();
+  const { title } = useAppState();
 
   return (
     <div className="TitlePosition">
       <h2>
-        Title alignment
+        Alignment
       </h2>
 
       <div className="ButtonGroups">
         <ButtonGroup>
           <Button
-            active={titleHAlign.value === 'left'}
+            active={title.hAlign.value === 'left'}
             title="Align left"
-            onClick={() => { titleHAlign.value = 'left'; }}
+            onClick={() => { title.hAlign.value = 'left'; }}
           >
             <AlignLeftIcon />
           </Button>
           <Button
-            active={titleHAlign.value === 'center'}
+            active={title.hAlign.value === 'center'}
             title="Align center"
-            onClick={() => { titleHAlign.value = 'center'; }}
+            onClick={() => { title.hAlign.value = 'center'; }}
           >
             <AlignCenterIcon />
           </Button>
           <Button
-            active={titleHAlign.value === 'right'}
+            active={title.hAlign.value === 'right'}
             title="Align right"
-            onClick={() => { titleHAlign.value = 'right'; }}
+            onClick={() => { title.hAlign.value = 'right'; }}
           >
             <AlignRightIcon />
           </Button>
@@ -47,23 +47,23 @@ function TitlePosition() {
 
         <ButtonGroup>
           <Button
-            active={titleVAlign.value === 'top'}
+            active={title.vAlign.value === 'top'}
             title="Align top"
-            onClick={() => { titleVAlign.value = 'top'; }}
+            onClick={() => { title.vAlign.value = 'top'; }}
           >
             <AlignTopIcon />
           </Button>
           <Button
-            active={titleVAlign.value === 'middle'}
+            active={title.vAlign.value === 'middle'}
             title="Align middle"
-            onClick={() => { titleVAlign.value = 'middle'; }}
+            onClick={() => { title.vAlign.value = 'middle'; }}
           >
             <AlignMiddleIcon />
           </Button>
           <Button
-            active={titleVAlign.value === 'bottom'}
+            active={title.vAlign.value === 'bottom'}
             title="Align bottom"
-            onClick={() => { titleVAlign.value = 'bottom'; }}
+            onClick={() => { title.vAlign.value = 'bottom'; }}
           >
             <AlignBottomIcon />
           </Button>

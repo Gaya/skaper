@@ -1,0 +1,8 @@
+.ColorPicker {
+    background-color: var(--skaper-primary);
+    border: 2px solid var(--skaper-primary);
+    padding: 0;
+    height: 1.3em;
+    border-radius: 4px;
+    overflow: hidden;
+}

@@ -6,34 +6,13 @@
     fieldset {
         display: block;
         border: 0;
-        padding: 0;
+        border-bottom: 1px solid var(--skaper-divider);
+        padding: 8px 0;
         margin: 0;
-
-        legend {
-            background-color: var(--skaper-primary-dark);
-            color: var(--skaper-primary-light);
-            display: block;
-            width: 100%;
-            padding: 4px 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.9em;
-        }
     }
 
-    label {
-        display: block;
-        font-weight: 500;
+    h2 {
         font-size: 0.9em;
-        margin-bottom: 4px;
-    }
-
-    select {
-        background: var(--skaper-light);
-        border: 1px solid var(--skaper-text);
-        border-radius: 4px;
-        color: var(--skaper-text);
-        padding: 8px;
-        width: 100%;
+        font-weight: 600;
     }
 }

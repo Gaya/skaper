@@ -1,5 +1,5 @@
 #skaper-maker .TitlePosition {
-    padding: 12px;
+    padding: 0 12px;
 
     .ButtonGroups {
         display: flex;
@@ -17,6 +17,6 @@
     }
 
     h2 {
-        margin-bottom: 12px;
+        margin-bottom: 4px;
     }
 }

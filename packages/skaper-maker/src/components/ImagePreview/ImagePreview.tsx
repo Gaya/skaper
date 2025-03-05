@@ -1,16 +1,18 @@
 import classNames from "classnames";
 
-import { imageSize } from "@/components/signals";
+import { useAppState } from "@/components/Skaper/AppState";
+
+import ImageSize from "./ImageSize";
 
 import './ImagePreview.css';
 
 function ImagePreview() {
+    const { imageSize } = useAppState();
+
     return (
         <section class="ImagePreview">
+            <ImageSize />
             <div class={classNames('Image', { 'Twitter': imageSize.value === 'twitter' })}>
-                <span class="Dimensions">
-                    Dimensions: {imageSize.value === 'twitter' ? '1200 × 675' : '1200 × 630'}
-                </span>
             </div>
         </section>
     )

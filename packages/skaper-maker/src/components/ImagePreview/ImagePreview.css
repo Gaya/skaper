@@ -1,25 +1,11 @@
 #skaper-maker .ImagePreview {
     margin: 16px;
 
-    .Dimensions {
-        font-size: 0.8em;
-        text-transform: uppercase;
-        background: var(--skaper-primary-light);
-        color: var(--skaper-primary-dark);
-        padding: 4px;
-        position: absolute;
-        top: 0;
-        right: 0;
-        opacity: 0.2;
-        transition: opacity ease 0.2s;
-        z-index: 100;
-    }
-
     .Image {
         position: relative;
         border: 1px solid var(--skaper-divider);
         aspect-ratio: 1200 / 630;
-        width: 750px;
+        height: 400px;
         display: flex;
         flex-direction: column;
         justify-content: center;

@@ -27,6 +27,7 @@
     "@preact/signals": "^2.0.1",
     "classnames": "^2.5.1",
     "preact": "^10.25.3",
+    "skaper": "^0.0.6",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {
@@ -57,8 +58,22 @@
       "react/react-in-jsx-scope": 0,
       "react/require-default-props": 0,
       "import/prefer-default-export": 0,
-      "react/jsx-filename-extension": [2, { "extensions": [".tsx"] }],
-      "import/extensions": ["error", "ignorePackages", { "ts": "never", "tsx": "never" }]
+      "react/jsx-filename-extension": [
+        2,
+        {
+          "extensions": [
+            ".tsx"
+          ]
+        }
+      ],
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "ts": "never",
+          "tsx": "never"
+        }
+      ]
     },
     "parserOptions": {
       "project": "./tsconfig.json"

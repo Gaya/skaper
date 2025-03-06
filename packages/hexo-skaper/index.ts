@@ -7,18 +7,18 @@ import { existsSync, writeFileSync } from "hexo-fs";
 import { generateImage, parseHTML } from 'skaper';
 
 async function createImages(this: any) {
-    const hexo = this;
-    const posts = hexo.locals.get('posts');
+  const hexo = this;
+  const posts = hexo.locals.get('posts');
 
-    console.info('Generating OG images');
+  console.info('Generating OG images');
 
-    return Promise.all(posts.data.map((p: any) => new Promise((resolve) => {
-        const path = join(hexo.base_dir, 'source', '_posts', p.slug, 'og-poster.jpg');
+  return Promise.all(posts.data.map((p: any) => new Promise((resolve) => {
+    const path = join(hexo.base_dir, 'source', '_posts', p.slug, 'og-poster.jpg');
 
-        if (!existsSync(path)) {
-            console.info('Creating OG image for', path);
+    if (!existsSync(path)) {
+      console.info('Creating OG image for', path);
 
-            const logo = join(hexo.base_dir, hexo.config.skaper?.logo);
+      const logo = join(hexo.base_dir, hexo.config.skaper?.logo);
 
             return generateImage(
                 parseHTML(`<div id="root">${p.content}</div>`),
@@ -38,11 +38,11 @@ async function createImages(this: any) {
             });
         }
 
-        // all is well
-        resolve(true);
-    })));
+    // all is well
+    resolve(true);
+  })));
 }
 
 if (hexo) {
-    hexo.extend.filter.register('before_generate', createImages);
+  hexo.extend.filter.register('before_generate', createImages);
 }

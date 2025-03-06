@@ -11,7 +11,7 @@ function ColorPicker({ value, onChange = undefined }: ColorPickerProps) {
       className="ColorPicker"
       type="color"
       value={value}
-      onChange={(e) => onChange && 'value' in e.target && onChange(e.target.value.toString())}
+      onInput={(e) => onChange && 'value' in e.target && typeof e.target.value === 'string' && onChange(e.target.value)}
     />
   );
 }

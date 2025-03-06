@@ -1,5 +1,6 @@
 import TitlePosition from './TitlePosition/TitlePosition';
 import TitleColor from './TitleColor/TitleColor';
+import TitleHighlightColor from './TitleHighlightColor/TitleHighlightColor';
 
 import './Config.css';
 
@@ -11,6 +12,9 @@ function Config() {
       </fieldset>
       <fieldset>
         <TitlePosition />
+      </fieldset>
+      <fieldset>
+        <TitleHighlightColor />
       </fieldset>
     </aside>
   );

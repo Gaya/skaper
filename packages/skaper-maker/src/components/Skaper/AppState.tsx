@@ -8,7 +8,9 @@ import { HAlign, ImageSize, VAlign } from 'skaper';
 const createDefaultAppState = () => ({
   imageSize: signal<ImageSize>('og'),
   title: {
-    color: signal<string>('#ffffff'),
+    color: signal<string>('#000000'),
+    enableHighlight: signal<boolean>(true),
+    highlightColor: signal<string>('#ffffff'),
     hAlign: signal<HAlign>('left'),
     vAlign: signal<VAlign>('top'),
   },

@@ -2,9 +2,11 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
 import { parse, HTMLElement } from 'node-html-parser';
-import { createCanvas, loadImage, registerFont, CanvasRenderingContext2D } from 'canvas';
+import { createCanvas, loadImage, registerFont } from 'canvas';
 import sharp from 'sharp';
 import { RequestInfo, RequestInit } from 'node-fetch';
+
+import formatTitle from './lib/formatTitle';
 
 const fetch = (url: RequestInfo, init?: RequestInit) =>  import('node-fetch')
     .then(({ default: fetch }) => fetch(url, init));
@@ -20,28 +22,6 @@ export interface SiteConfig {
     getTitle?: (body: HTMLElement, config: SiteConfig) => string | undefined;
     getFirstImage?: (body: HTMLElement, config: SiteConfig) => string | undefined;
     resolveImage?: (src: string, config: SiteConfig) => Promise<ArrayBuffer>;
-}
-
-function formatTitle(title: string, maxWidth: number, ctx: CanvasRenderingContext2D): string {
-    const words = title.split(' ');
-
-    return words.reduce((acc, word) => {
-        if (acc === '') {
-            return word;
-        }
-
-        if (ctx.measureText(acc + ' ' + word).width > maxWidth) {
-            const [beforeDash, ...splitOnDash] = word.split('-');
-
-            if (splitOnDash.length > 0 && ctx.measureText(acc + ' ' + beforeDash + '-').width <= maxWidth) {
-                return `${acc} ${beforeDash}-\n${splitOnDash.join('-')}`;
-            }
-
-            return `${acc}\n${word}`;
-        }
-
-        return `${acc} ${word}`;
-    }, '');
 }
 
 const defaultConfig: Required<Pick<SiteConfig, "resolveImage" | "getTitle" | "getFirstImage">> = {
@@ -118,8 +98,7 @@ export async function generateImage(
     const titlePadding = 46;
     const maxTitleWidth = width - (titlePadding * 2);
 
-    const formattedTitle = formatTitle(title || 'No title', maxTitleWidth, ctx);
-    const lines = formattedTitle.split('\n');
+    const lines = formatTitle(title || 'No title', maxTitleWidth, ctx as unknown as CanvasRenderingContext2D);
     const lineHeight = ctx.measureText('lines').emHeightDescent;
 
     const top = height - (lineHeight * lines.length) - titlePadding;
@@ -138,7 +117,7 @@ export async function generateImage(
     }
 
     ctx.fillStyle = "#000";
-    ctx.fillText(formattedTitle, titlePadding, top);
+    ctx.fillText(lines.join('\n'), titlePadding, top);
 
     const buffer = canvas.toBuffer("image/jpeg");
     return sharp(buffer).jpeg({ mozjpeg: true }).toBuffer();

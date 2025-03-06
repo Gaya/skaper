@@ -3,9 +3,7 @@ import { useContext } from 'preact/hooks';
 import { PropsWithChildren } from 'preact/compat';
 import { signal } from '@preact/signals';
 
-type ImageSize = 'og' | 'twitter';
-type HAlign = 'left' | 'center' | 'right';
-type VAlign = 'top' | 'middle' | 'bottom';
+import { HAlign, ImageSize, VAlign } from 'skaper';
 
 const createDefaultAppState = () => ({
   imageSize: signal<ImageSize>('og'),

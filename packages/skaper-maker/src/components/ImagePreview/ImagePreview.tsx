@@ -23,11 +23,19 @@ function ImagePreview() {
             letterSpacing: 0,
             vAlign: title.vAlign.value,
             hAlign: title.hAlign.value,
+            highlightColor: title.enableHighlight.value ? title.highlightColor.value : undefined,
           },
         },
       );
     }
-  }, [imageSize.value, title.color.value, title.hAlign.value, title.vAlign.value]);
+  }, [
+    imageSize.value,
+    title.color.value,
+    title.enableHighlight.value,
+    title.hAlign.value,
+    title.highlightColor.value,
+    title.vAlign.value,
+  ]);
 
   return (
     <section className="ImagePreview">

@@ -16,6 +16,7 @@ interface TextLayer {
   text: string;
   vAlign: VAlign;
   hAlign: HAlign;
+  highlightColor?: string;
 }
 
 type RenderLayer = BackgroundLayer | TextLayer;
@@ -27,6 +28,7 @@ interface RenderConfig {
     letterSpacing: number;
     hAlign: HAlign;
     vAlign: VAlign;
+    highlightColor?: string;
   };
 }
 
@@ -59,16 +61,15 @@ function renderLayers(
     if (layer.type === 'text') {
       // text layer
       ctx.font = `${scaled(layer.size)}px "JetBrains Mono"`;
-      ctx.textAlign = layer.hAlign;
       ctx.textBaseline = "top";
+      ctx.textAlign = layer.hAlign;
       ctx.letterSpacing = '0px';
-      ctx.fillStyle = layer.color;
 
       const titlePadding = 46;
       const maxTitleWidth = targetWidth - (titlePadding * 2);
 
       const lines = formatTitle(layer.text, scaled(maxTitleWidth), ctx as unknown as CanvasRenderingContext2D);
-      const lineHeight = ctx.measureText('lineHeight').emHeightDescent;
+      const lineHeight = scaled(layer.size * 1.2);
       const linesHeight = lines.length * lineHeight;
 
       let left = 0;
@@ -97,7 +98,42 @@ function renderLayers(
           break;
       }
 
+      // draw highlight
+      if (layer.highlightColor) {
+        lines.forEach((line, i) => {
+          if (!layer.highlightColor) {
+            return;
+          }
+
+          const highlightPadding = scaled(layer.size * 0.2);
+          const lineWidth = ctx.measureText(line).width + scaled(highlightPadding * 2);
+
+          let highlightLeft = 0;
+          switch (layer.hAlign) {
+            case 'left':
+              highlightLeft = scaled(left - highlightPadding);
+              break;
+            case 'center':
+              highlightLeft = scaled(targetWidth / 2) - (lineWidth / 2);
+              break;
+            case 'right':
+              highlightLeft = scaled(left + highlightPadding) - lineWidth;
+              break;
+          }
+
+          ctx.fillStyle = layer.highlightColor;
+          ctx.fillRect(
+            highlightLeft,
+            top + (i * lineHeight) - scaled(layer.size * 0.2) - scaled(highlightPadding),
+            lineWidth,
+            lineHeight + scaled(highlightPadding * 2),
+          );
+        });
+      }
+
+      // draw text
       lines.forEach((line, i) => {
+        ctx.fillStyle = layer.color;
         ctx.fillText(
           line,
           scaled(left),
@@ -129,6 +165,7 @@ export function renderCanvas(canvas: HTMLCanvasElement, config: RenderConfig) {
       size: 72,
       vAlign: config.title.vAlign,
       hAlign: config.title.hAlign,
+      highlightColor: config.title.highlightColor,
     },
     {
       type: 'background',

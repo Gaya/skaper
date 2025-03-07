@@ -54,7 +54,7 @@ function renderLayers(
   layers.reverse().forEach((layer) => {
     if (layer.type === 'background') {
       // background layer
-      ctx.fillStyle = "#000";
+      ctx.fillStyle = layer.color;
       ctx.fillRect(0, 0, scaled(targetWidth), scaled(targetHeight));
     }
 
@@ -106,27 +106,28 @@ function renderLayers(
           }
 
           const highlightPadding = scaled(layer.size * 0.2);
-          const lineWidth = ctx.measureText(line).width + scaled(highlightPadding * 2);
+          const lineWidth = ctx.measureText(line).width + (highlightPadding * 2);
 
           let highlightLeft = 0;
           switch (layer.hAlign) {
             case 'left':
-              highlightLeft = scaled(left - highlightPadding);
+              highlightLeft = scaled(left) - highlightPadding;
               break;
             case 'center':
               highlightLeft = scaled(targetWidth / 2) - (lineWidth / 2);
               break;
             case 'right':
-              highlightLeft = scaled(left + highlightPadding) - lineWidth;
+              highlightLeft = scaled(left) + highlightPadding - lineWidth;
               break;
           }
 
           ctx.fillStyle = layer.highlightColor;
           ctx.fillRect(
             highlightLeft,
-            top + (i * lineHeight) - scaled(layer.size * 0.2) - scaled(highlightPadding),
+            // line distance - padding - extra line height
+            (top + (i * lineHeight)) - highlightPadding - scaled(layer.size * 0.1),
             lineWidth,
-            lineHeight + scaled(highlightPadding * 2),
+            lineHeight + (highlightPadding * 2),
           );
         });
       }
@@ -169,7 +170,7 @@ export function renderCanvas(canvas: HTMLCanvasElement, config: RenderConfig) {
     },
     {
       type: 'background',
-      color: '#000',
+      color: '#ffffff',
     },
   ];
 

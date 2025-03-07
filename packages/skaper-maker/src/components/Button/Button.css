@@ -4,12 +4,21 @@
     background: var(--skaper-light);
     border: 1px solid var(--skaper-primary-dark);
     color: var(--skaper-primary-dark);
-    padding: 4px;
+    padding: 4px 8px;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color ease 0.2s, border-color ease 0.2s, color ease 0.2s;
-    font-size: 1em;
+    font-size: 0.9em;
     height: 32px;
+
+    &.--icon {
+        padding: 4px;
+
+        svg {
+            width: 100%;
+            margin-right: 0;
+        }
+    }
 
     &.--small {
         padding: 2px;
@@ -31,8 +40,8 @@
 
     svg {
         display: block;
-        width: 100%;
         height: 100%;
+        margin-right: 4px;
     }
 
     &:hover, &:active, &:focus {

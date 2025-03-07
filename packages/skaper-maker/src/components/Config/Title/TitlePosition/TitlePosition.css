@@ -1,5 +1,6 @@
 #skaper-maker .TitlePosition {
     .ButtonGroups {
+        margin-top: 4px;
         display: flex;
         justify-content: space-between;
 
@@ -12,9 +13,5 @@
                 padding-left: 6px;
             }
         }
-    }
-
-    h2 {
-        margin-bottom: 4px;
     }
 }

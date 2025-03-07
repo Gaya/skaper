@@ -9,7 +9,7 @@ function TitleHighlightColor() {
 
   return (
     <div className="TitleHighlightColor Horizontal">
-      <h2>Highlight Color</h2>
+      <h3>Highlight Color</h3>
       <div className="ToggleGroup">
         <Toggle
           value={title.enableHighlight.value}

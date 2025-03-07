@@ -23,6 +23,9 @@ type RenderLayer = BackgroundLayer | TextLayer;
 
 interface RenderConfig {
   imageSize: ImageSize;
+  background: {
+    color: string;
+  },
   title: {
     color: string;
     letterSpacing: number;
@@ -157,7 +160,6 @@ export function renderCanvas(canvas: HTMLCanvasElement, config: RenderConfig) {
     throw new Error('No canvas ctx available');
   }
 
-
   const layers: RenderLayer[] = [
     {
       type: 'text',
@@ -170,7 +172,7 @@ export function renderCanvas(canvas: HTMLCanvasElement, config: RenderConfig) {
     },
     {
       type: 'background',
-      color: '#ffffff',
+      color: config.background.color,
     },
   ];
 

@@ -6,7 +6,7 @@ function TitleColor() {
 
   return (
     <div className="Horizontal">
-      <h2>Color</h2>
+      <h3>Color</h3>
       <ColorPicker value={title.color.value} onChange={(color) => { title.color.value = color; }} />
     </div>
   );

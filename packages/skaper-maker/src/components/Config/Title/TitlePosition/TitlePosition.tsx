@@ -16,13 +16,14 @@ function TitlePosition() {
 
   return (
     <div className="TitlePosition">
-      <h2>
+      <h3>
         Alignment
-      </h2>
+      </h3>
 
       <div className="ButtonGroups">
         <ButtonGroup>
           <Button
+            icon
             active={title.hAlign.value === 'left'}
             title="Align left"
             onClick={() => { title.hAlign.value = 'left'; }}
@@ -30,6 +31,7 @@ function TitlePosition() {
             <AlignLeftIcon />
           </Button>
           <Button
+            icon
             active={title.hAlign.value === 'center'}
             title="Align center"
             onClick={() => { title.hAlign.value = 'center'; }}
@@ -37,6 +39,7 @@ function TitlePosition() {
             <AlignCenterIcon />
           </Button>
           <Button
+            icon
             active={title.hAlign.value === 'right'}
             title="Align right"
             onClick={() => { title.hAlign.value = 'right'; }}
@@ -47,6 +50,7 @@ function TitlePosition() {
 
         <ButtonGroup>
           <Button
+            icon
             active={title.vAlign.value === 'top'}
             title="Align top"
             onClick={() => { title.vAlign.value = 'top'; }}
@@ -54,6 +58,7 @@ function TitlePosition() {
             <AlignTopIcon />
           </Button>
           <Button
+            icon
             active={title.vAlign.value === 'middle'}
             title="Align middle"
             onClick={() => { title.vAlign.value = 'middle'; }}
@@ -61,6 +66,7 @@ function TitlePosition() {
             <AlignMiddleIcon />
           </Button>
           <Button
+            icon
             active={title.vAlign.value === 'bottom'}
             title="Align bottom"
             onClick={() => { title.vAlign.value = 'bottom'; }}

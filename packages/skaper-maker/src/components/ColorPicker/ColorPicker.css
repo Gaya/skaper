@@ -2,10 +2,11 @@
     background-color: var(--skaper-primary);
     border: 2px solid var(--skaper-primary);
     padding: 0;
-    height: 1.3em;
     border-radius: 4px;
     overflow: hidden;
     transition: opacity ease 0.2s;
+    height: 22px;
+    width: 52px;
 
     &:disabled {
         opacity: 0.6;

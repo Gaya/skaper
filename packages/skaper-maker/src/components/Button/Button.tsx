@@ -5,6 +5,7 @@ import './Button.css';
 
 interface ButtonProps {
   title: string;
+  icon?: boolean;
   size?: 'small' | 'default' | 'large';
   active?: boolean;
   onClick?: () => void;
@@ -14,6 +15,7 @@ function Button({
   title,
   children,
   active = false,
+  icon = false,
   size = 'default',
   onClick,
 }: PropsWithChildren<ButtonProps>) {
@@ -22,6 +24,7 @@ function Button({
       className={classNames(
         'Button',
         {
+          '--icon': icon,
           '--active': !!active,
           '--small': size === 'small',
           '--large': size === 'large',

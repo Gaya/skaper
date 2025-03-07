@@ -9,7 +9,7 @@ import ImageSize from './ImageSize';
 import './ImagePreview.css';
 
 function ImagePreview() {
-  const { imageSize, title } = useAppState();
+  const { imageSize, title, background } = useAppState();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -18,6 +18,9 @@ function ImagePreview() {
         canvasRef.current,
         {
           imageSize: imageSize.value,
+          background: {
+            color: background.color.value,
+          },
           title: {
             color: title.color.value,
             letterSpacing: 0,
@@ -29,6 +32,7 @@ function ImagePreview() {
       );
     }
   }, [
+    background.color.value,
     imageSize.value,
     title.color.value,
     title.enableHighlight.value,

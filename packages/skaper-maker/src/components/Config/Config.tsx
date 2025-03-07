@@ -1,6 +1,8 @@
 import { useState } from 'preact/hooks';
 
 import TitleConfig from './Title/TitleConfig';
+import BackgroundConfig from './Background/BackgroundConfig';
+
 import TitleIcon from './Title.icon';
 import BackgroundIcon from './Background.icon';
 
@@ -35,6 +37,7 @@ function Config() {
       </menu>
       <section className="ConfigContent">
         {page === 'title' && <TitleConfig />}
+        {page === 'background' && <BackgroundConfig />}
       </section>
     </aside>
   );

@@ -28,15 +28,15 @@
             cursor: pointer;
 
             &:hover {
-                background: var(--skaper-divider);
+                background: var(--skaper-primary-light);
             }
 
             &.--active {
-                background: var(--skaper-text-light);
+                background: var(--skaper-primary);
                 color: var(--skaper-light);
 
                 &:hover {
-                    background: var(--skaper-text);
+                    background: var(--skaper-primary-dark);
                 }
             }
 
@@ -56,10 +56,18 @@
         border-bottom: 1px solid var(--skaper-divider);
         padding: 8px 0;
         margin: 0;
+
+        .Horizontal {
+            padding: 0 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
     }
 
     h2 {
         font-size: 0.9em;
         font-weight: 600;
+        margin-bottom: 0;
     }
 }

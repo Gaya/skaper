@@ -8,7 +8,7 @@ function TitleHighlightColor() {
   const { title } = useAppState();
 
   return (
-    <div className="TitleHighlightColor">
+    <div className="TitleHighlightColor Horizontal">
       <h2>Highlight Color</h2>
       <div className="ToggleGroup">
         <Toggle

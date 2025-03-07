@@ -1,13 +1,13 @@
+import AlignLeftIcon from '@/icons/AlignLeft.icon';
+import AlignCenterIcon from '@/icons/AlignCenter.icon';
+import AlignRightIcon from '@/icons/AlignRight.icon';
+import AlignTopIcon from '@/icons/AlignTop.icon';
+import AlignMiddleIcon from '@/icons/AlignMiddle.icon';
+import AlignBottomIcon from '@/icons/AlignBottom.icon';
+
 import { useAppState } from '@/components/Skaper/AppState';
 import Button from '@/components/Button/Button';
 import ButtonGroup from '@/components/Button/ButtonGroup';
-
-import AlignLeftIcon from './AlignLeft.icon';
-import AlignCenterIcon from './AlignCenter.icon';
-import AlignRightIcon from './AlignRight.icon';
-import AlignTopIcon from './AlignTop.icon';
-import AlignMiddleIcon from './AlignMiddle.icon';
-import AlignBottomIcon from './AlignBottom.icon';
 
 import './TitlePosition.css';
 

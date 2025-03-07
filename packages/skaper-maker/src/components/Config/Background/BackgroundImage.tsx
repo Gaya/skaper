@@ -1,7 +1,7 @@
+import UploadIcon from '@/icons/Upload.icon';
+
 import { useAppState } from '@/components/Skaper/AppState';
 import Button from '@/components/Button/Button';
-
-import UploadIcon from './Upload.icon';
 
 function BackgroundImage() {
   const { background } = useAppState();

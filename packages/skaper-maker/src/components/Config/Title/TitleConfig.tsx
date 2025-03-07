@@ -1,5 +1,5 @@
 import TitleColor from './TitleColor';
-import TitlePosition from './TitlePosition/TitlePosition';
+import TitlePosition from './TitlePosition';
 import TitleHighlightColor from './TitleHighlightColor';
 
 function TitleConfig() {

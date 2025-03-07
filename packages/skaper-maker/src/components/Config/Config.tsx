@@ -1,10 +1,10 @@
 import { useState } from 'preact/hooks';
 
+import BackgroundIcon from '@/icons/Background.icon';
+import TitleIcon from '@/icons/Title.icon';
+
 import TitleConfig from './Title/TitleConfig';
 import BackgroundConfig from './Background/BackgroundConfig';
-
-import TitleIcon from './Title.icon';
-import BackgroundIcon from './Background.icon';
 
 import './Config.css';
 

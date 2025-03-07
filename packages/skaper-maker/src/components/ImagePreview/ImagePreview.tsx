@@ -19,6 +19,7 @@ function ImagePreview() {
         {
           imageSize: imageSize.value,
           background: {
+            image: background.image.value || undefined,
             color: background.color.value,
           },
           title: {
@@ -33,6 +34,7 @@ function ImagePreview() {
     }
   }, [
     background.color.value,
+    background.image.value,
     imageSize.value,
     title.color.value,
     title.enableHighlight.value,

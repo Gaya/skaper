@@ -1,12 +1,35 @@
 .ColorPicker {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
     background-color: var(--skaper-primary);
-    border: 2px solid var(--skaper-primary);
+    border: 3px solid var(--skaper-primary);
     padding: 0;
     border-radius: 4px;
     overflow: hidden;
     transition: opacity ease 0.2s;
     height: 22px;
     width: 52px;
+
+    &::-webkit-color-swatch-wrapper {
+        padding: 0;
+        border-radius: 2px;
+    }
+
+    &::-webkit-color-swatch{
+        border: 0;
+        border-radius: 2px;
+    }
+
+    &::-moz-color-swatch,
+    &::-moz-focus-inner{
+        border: 0;
+        border-radius: 2px;
+    }
+
+    &::-moz-focus-inner{
+        padding: 0;
+    }
 
     &:disabled {
         opacity: 0.6;

@@ -1,0 +1,13 @@
+.TitleSizeInput {
+    display: flex;
+    align-items: center;
+
+    svg:first-child {
+        width: 16px;
+    }
+
+    input[type=range] {
+        margin: 0 4px;
+        accent-color: var(--skaper-primary);
+    }
+}

@@ -2,6 +2,7 @@ import TitleColor from './TitleColor';
 import TitlePosition from './TitlePosition';
 import TitleHighlightColor from './TitleHighlightColor';
 import TitleFont from './TitleFont';
+import TitleSize from './TitleSize';
 
 function TitleConfig() {
   return (
@@ -11,6 +12,9 @@ function TitleConfig() {
       </h2>
       <fieldset>
         <TitleFont />
+      </fieldset>
+      <fieldset>
+        <TitleSize />
       </fieldset>
       <fieldset>
         <TitleColor />

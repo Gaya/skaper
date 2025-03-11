@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { renderCanvas } from 'skaper';
 
 import { useAppState } from '@/components/Skaper/AppState';
+import { FONTS } from '@/common/fonts';
 
 import ImageSize from './ImageSize';
 
@@ -23,6 +24,7 @@ function ImagePreview() {
             color: background.color.value,
           },
           title: {
+            font: FONTS[title.font.value],
             color: title.color.value,
             letterSpacing: 0,
             vAlign: title.vAlign.value,
@@ -30,12 +32,13 @@ function ImagePreview() {
             highlightColor: title.enableHighlight.value ? title.highlightColor.value : undefined,
           },
         },
-      );
+      ).then();
     }
   }, [
     background.color.value,
     background.image.value,
     imageSize.value,
+    title.font.value,
     title.color.value,
     title.enableHighlight.value,
     title.hAlign.value,

@@ -12,6 +12,7 @@ interface BackgroundLayer {
 
 interface TextLayer {
   type: 'text';
+  font: { name: string; url?: string };
   color: string;
   size: number;
   text: string;
@@ -29,6 +30,7 @@ interface RenderConfig {
     color: string;
   },
   title: {
+    font: { name: string; url?: string };
     color: string;
     letterSpacing: number;
     hAlign: HAlign;
@@ -57,7 +59,7 @@ async function renderLayers(
   const scaled = (n: number) => n / (targetWidth / canvasWidth);
 
   const promises: (() => Promise<void>)[] = layers.reverse().map((layer) => {
-    return () => new Promise((resolve) => {
+    return () => new Promise(async (resolve) => {
       if (layer.type === 'background') {
         // background layer
         ctx.fillStyle = layer.color;
@@ -109,7 +111,13 @@ async function renderLayers(
 
       if (layer.type === 'text') {
         // text layer
-        ctx.font = `${scaled(layer.size)}px "JetBrains Mono"`;
+        if (layer.font.url) {
+          const font = new FontFace(layer.font.name, `url(${layer.font.url})`);
+          await font.load();
+          document.fonts.add(font);
+        }
+
+        ctx.font = `${scaled(layer.size)}px "${layer.font.name}"`;
         ctx.textBaseline = "top";
         ctx.textAlign = layer.hAlign;
         ctx.letterSpacing = '0px';
@@ -217,6 +225,7 @@ export function renderCanvas(canvas: HTMLCanvasElement, config: RenderConfig): P
   const layers: RenderLayer[] = [
     {
       type: 'text',
+      font: config.title.font,
       color: config.title.color,
       text: 'Hallo met Ad, alles goed? Ik hoop van wel.',
       size: 72,

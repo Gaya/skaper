@@ -66,6 +66,16 @@
             justify-content: space-between;
             align-items: center;
         }
+
+        select {
+            background: var(--skaper-light);
+            border: 1px solid var(--skaper-text);
+            border-radius: 4px;
+            color: var(--skaper-text);
+            padding: 4px;
+            width: auto;
+            display: block;
+        }
     }
 
     h2 {

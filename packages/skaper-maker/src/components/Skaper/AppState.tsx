@@ -5,6 +5,8 @@ import { signal } from '@preact/signals';
 
 import { HAlign, ImageSize, VAlign } from 'skaper';
 
+import { FONTS } from '@/common/fonts';
+
 const createDefaultAppState = () => ({
   imageSize: signal<ImageSize>('og'),
   background: {
@@ -12,6 +14,7 @@ const createDefaultAppState = () => ({
     color: signal<string>('#ffffff'),
   },
   title: {
+    font: signal<keyof typeof FONTS>('Roboto'),
     color: signal<string>('#ffffff'),
     enableHighlight: signal<boolean>(true),
     highlightColor: signal<string>('#000000'),
